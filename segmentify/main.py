@@ -20,13 +20,19 @@ def main(args):
         imgs = np.array(imgs)
 
     with gui_qt():
-        viewer = Viewer(imgs, heatmap=args.heatmap)
+        try:
+            args.heatmap
+        except AttributeError:
+            viewer = Viewer(imgs)
+        else:
+            viewer = Viewer(imgs, heatmap=args.heatmap)
 
-
-if __name__ == "__main__":
+def main_cli():
     # parser
     parser = argparse.ArgumentParser()
     parser.add_argument("images", nargs="*", type=str, help="Image to view and segment.")
     args = parser.parse_args()
-
     main(args)
+
+if __name__ == "__main__":
+    main_cli()

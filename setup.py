@@ -43,4 +43,5 @@ setup(
         'Operating System :: MacOS',
     ],
     install_requires=INSTALL_REQUIRES,
+    entry_points={'console_scripts': ['segmentify=segmentify.main:main_cli']},
 )
